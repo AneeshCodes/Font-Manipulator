@@ -1,6 +1,10 @@
 ToType = ''
 x = 100
 y = 100
+lx = 0
+rx = 0
+difference = 0
+family = ""
 
 function preload(){
 
@@ -24,12 +28,19 @@ function draw(){
   background('white');
   ToType = document.getElementById('toType').value
   console.log(ToType)
+  family = document.getElementById('family').value
+  textFont(family)
+  textSize(difference)
   text(ToType, x, y);
+  console.log(difference)
 }
 
 function gotResults(results){
   if(results.length > 0){
     console.log(results)
-
+    rx = results[0].pose.rightWrist.x
+    lx = results[0].pose.leftWrist.x
+    length = lx-rx
+    difference = floor(length/10)
   }
 }
